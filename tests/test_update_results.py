@@ -17,9 +17,10 @@ class ResultsTests(unittest.TestCase):
 
     def test_snapshot_matches_readme(self):
         update.validate(self.data)
-        readme=(ROOT/'README.md').read_text(encoding='utf-8')
-        rendered=readme.split(update.START)[1].split(update.END)[0].strip()
-        self.assertEqual(rendered,update.table(self.data).strip())
+        for filename,lang in [('README.md','en'),('README_zh-CN.md','zh')]:
+            readme=(ROOT/filename).read_text(encoding='utf-8')
+            rendered=readme.split(update.START)[1].split(update.END)[0].strip()
+            self.assertEqual(rendered,update.table(self.data,lang).strip())
 
     def test_missing_verification_is_not_invented(self):
         data=copy.deepcopy(self.data)

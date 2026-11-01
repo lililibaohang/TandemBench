@@ -53,17 +53,28 @@ def validate(data):
             raise ValueError('Missing or invalid average output length: '+r['model'])
 
 
-def table(data):
+def table(data,lang='zh'):
     pct=lambda x: '—' if x is None else str((Decimal(str(x))*100).quantize(Decimal('.01'),rounding=ROUND_HALF_UP))
-    lines=[f"**评测结果截至：{data['evaluation_date']}**",'']
-    for group,title in [('native_decision','决策模型'),('open_general','通用模型')]:
+    if lang not in ('zh','en'):raise ValueError('Unsupported README language')
+    date_label='评测结果截至' if lang=='zh' else 'Results as of'
+    titles=('决策模型','通用模型') if lang=='zh' else ('Decision Models','General Models')
+    lines=[f"**{date_label}：{data['evaluation_date']}**" if lang=='zh' else f"**{date_label}: {data['evaluation_date']}**",'']
+    for group,title in zip(('native_decision','open_general'),titles):
+        rows=sorted((x for x in data['rows'] if x['model_group']==group),key=lambda x:x['global_acc_rank'])
+        best_da=max(r['main_accuracy'] for r in rows)
+        present_va=[r['oja'] for r in rows if r.get('oja') is not None]
+        best_va=max(present_va) if present_va else None
         column='Params. (B)' if group=='native_decision' else 'Avg. output tokens'
         lines += [f'### {title}','','| Rank | Model | '+column+' | DA ↑ | VA ↑ |','|---:|---|---:|---:|---:|']
-        for r in sorted((x for x in data['rows'] if x['model_group']==group),key=lambda x:x['global_acc_rank']):
+        for index,r in enumerate(rows):
             model=str(r['display_name']).replace('|','\\|')
+            if index<3:model='**'+model+'**'
             detail=(str(r.get('table_params_display') or '—').replace('|','\\|') if group=='native_decision'
                     else format(int(Decimal(str(r['mean_output_tokens'])).quantize(Decimal('1'),rounding=ROUND_HALF_UP)),','))
-            lines.append(f"| {r['global_acc_rank']} | {model} | {detail} | {pct(r['main_accuracy'])} | {pct(r.get('oja'))} |")
+            da=pct(r['main_accuracy']);va=pct(r.get('oja'))
+            if r['main_accuracy']==best_da:da='**'+da+'**'
+            if best_va is not None and r.get('oja')==best_va:va='**'+va+'**'
+            lines.append(f"| {r['global_acc_rank']} | {model} | {detail} | {da} | {va} |")
         lines.append('')
     return '\n'.join(lines)
 
@@ -84,22 +95,26 @@ def main():
         if not path.is_relative_to(root) or not path.is_file() or sha(path)!=entry['sha256']:
             raise ValueError('Source hash mismatch: '+entry['path'])
     if a.source.read_bytes()!=raw:raise ValueError('Source table changed during validation')
-    readme=ROOT/'README.md';text=readme.read_text(encoding='utf-8')
-    if text.count(START)!=1 or text.count(END)!=1:raise ValueError('README must have one results marker pair')
+    readmes=[(ROOT/'README.md','en'),(ROOT/'README_zh-CN.md','zh')]
+    texts={path:path.read_text(encoding='utf-8') for path,_ in readmes}
+    if any(text.count(START)!=1 or text.count(END)!=1 for text in texts.values()):
+        raise ValueError('Both README files must have one results marker pair')
     target=ROOT/'results/snapshots'/a.snapshot_id
     if target.exists():raise ValueError('Snapshot already exists; choose a new ID')
     snapshot={k:data[k] for k in ('source_result_id','main_models','main_outputs','identification_complete_models','identification_complete_outputs','model_groups')}
     snapshot.update(snapshot_id=a.snapshot_id,evaluation_date=a.date,
         source_table_sha256=hashlib.sha256(raw).hexdigest(),rows=[{k:r.get(k) for k in FIELDS} for r in data['rows']])
     # Validate fully before creating a new immutable snapshot.
-    rendered=table(snapshot)
+    rendered={lang:table(snapshot,lang) for _,lang in readmes}
     target.mkdir(parents=True)
     save(target/'summary.json',snapshot)
     save(ROOT/'results/current.json',{'snapshot_id':a.snapshot_id,
         'summary':str((target/'summary.json').relative_to(ROOT)), 'sha256':sha(target/'summary.json')})
-    readme.write_text(text.split(START)[0]+START+'\n'+rendered+END+text.split(END,1)[1],encoding='utf-8')
+    for path,lang in readmes:
+        text=texts[path]
+        path.write_text(text.split(START)[0]+START+'\n'+rendered[lang]+END+text.split(END,1)[1],encoding='utf-8')
     manifest_path=ROOT/'PACKAGE_MANIFEST.json';manifest=json.loads(manifest_path.read_text())
-    for file in [readme,ROOT/'results/current.json',target/'summary.json',Path(__file__)]:
+    for file in [*(path for path,_ in readmes),ROOT/'results/current.json',target/'summary.json',Path(__file__)]:
         manifest['files'][str(file.relative_to(ROOT))]=sha(file)
     manifest['files']=dict(sorted(manifest['files'].items()));save(manifest_path,manifest)
     print(f"Adopted {len(snapshot['rows'])} models in {a.snapshot_id}; README updated.")

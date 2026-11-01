@@ -3,7 +3,8 @@
   "files": {
     ".gitignore": "c097d0d091dff7c18ead2afd1b4ba5abc2c28bc0151ee5bbf9070cdb6ad4f594",
     "PROVENANCE.json": "d095532946542f542a4aa2642fce4c6c5997b93940ebe6bec17ba1c9be324cee",
-    "README.md": "ecd725c8491db1e43ad28d507ab3f67704ca1c80e39856c97b6b09cfe775e48c",
+    "README.md": "e71e0e392117b9a691ab327258e792e3dcaccabccdc4584c93a5e7798a0eecdf",
+    "README_zh-CN.md": "bd9714bbf1be5f8190db075c64553e59532af3ad204299b8528f31df871c5cdd",
     "data/decision/inputs.jsonl": "eaaee1ce0e516811df8aa5e9bad3e9cd64e619b21bb0a661cbe19ee084e72582",
     "data/manifest.json": "71ccbe21c3c027469e8350b3b90ffff1323c38bb482ccb14fece328e5d847ff0",
     "data/verification/inputs.jsonl": "0f1c008e88d8590c9ac6e05637026bc3bed8fae492c7d890bbc777eabe8e00cb",
@@ -22,9 +23,9 @@
     "tandembench/scoring.py": "e68ed36c011485eb56c9dd0048f3db726ee5b71fe7c5978aa7ed4da99c45fa6b",
     "tests/test_package.py": "645a99bcea7d1497dd3ce8c59e6a8e5694e733ec6e48ce662e6f4b3da4c8678a",
     "tests/test_review_regressions.py": "dcd789de6feb98d3e2359232e764f7635b5ca7d275a37fcf984930edf15df439",
-    "tests/test_update_results.py": "663b6e3c890b5d825762075c00457f586e48ef81aeacd7ddad6ba1978d6882d8",
+    "tests/test_update_results.py": "b38d34d2a0c3df8a9ad2e4129a1ad227e699238bae3b8ba3632ddff54fb6ac3b",
     "third_party/Collab-Overcooked-LICENSE": "06dcddbb6908a0c6dd4a9e8ec822eea41d5a460a53089fecccc8a68049e99241",
-    "tools/update_results.py": "3d0c93a1adcb7d244d0db5642d80dfc8af75ebba82a7b116a2588c502a8123f4",
+    "tools/update_results.py": "709208af593f20c8d27a90944b73681d0650d8c730a4ae0caf9029fcff5c36f3",
     "verify.py": "e9e03e5f13d7d5a5de98bcdede90b6abb0d949b0f8fb73c41d7ff433eb189128"
   }
 }

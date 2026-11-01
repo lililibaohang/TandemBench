@@ -1,43 +1,47 @@
+<div align="center">
+
 # TandemBench
 
-TandemBench 评估模型能否根据全局信息，理解多智能体之间的协作，并对团队方案作出决策。
+**Benchmarking Decision Models for Multi-Agent Collaboration**
 
-基准包含 **30 个任务、200 个场景和 1,200 道题**，从两个方面评估：
+**30 tasks** · **200 scenarios** · **1,200 questions** · **4,800 test inputs**
 
-- **团队方案决策（DA）**：从候选方案中选出最优方案。
-- **最优性验证（VA）**：判断给定方案中是否缺少最优方案。
+**English** · [简体中文](README_zh-CN.md)
 
-每道题提供四种选项排列，共 **4,800 条测试输入**。测试场景基于 [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked)。
+[Quick Start](#quick-start) · [Results](#results) · [Data & Code](#data-and-code)
 
-## 快速开始
+</div>
 
-需要 Python 3.10+，无需安装第三方依赖。当前支持 **Chat Completions 兼容 API**。
+TandemBench evaluates whether decision models can use global information to understand coordination among agents and make decisions about team plans.
 
-运行完整测试：
+- **DA · Team-plan decision**: select the optimal plan from the candidates.
+- **VA · Optimality verification**: determine whether an optimal plan is missing from the candidates.
+
+## Quick Start
+
+Requires Python 3.10+ and a Chat Completions-compatible API. No third-party packages are needed.
 
 ```bash
 python run.py --output runs/my-model
 ```
 
-按提示输入 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**；结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。
+Enter the API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for parameters and resuming runs.
 
-可通过 `--part decision` 或 `--part verification` 单独测试一个维度；使用 `--samples 4` 可对每条输入采样四次。更多参数、断点续跑和评分细节见[使用说明](docs/usage.md)。
-
-## 测试结果
+## Results
 
 <!-- RESULTS_START -->
-**评测结果截至：2026-11-01**
+**Results as of: 2026-11-01**
 
-### 决策模型
+### Decision Models
 
 | Rank | Model | Params. (B) | DA ↑ | VA ↑ |
 |---:|---|---:|---:|---:|
-| 3 | Basal-Omni-1.0-Ultra | 31 | 64.38 | 51.06 |
-| 4 | KnowLine-31B-Gen1 | 31 | 62.19 | 50.19 |
-| 7 | Quyet-1.0-Large | 31 | 59.75 | 52.06 |
+| 3 | **Basal-Omni-1.0-Ultra** | 31 | **64.38** | 51.06 |
+| 4 | **KnowLine-31B-Gen1** | 31 | 62.19 | 50.19 |
+| 7 | **Quyet-1.0-Large** | 31 | 59.75 | 52.06 |
 | 8 | H2O-Lightning-31B (BF16) | 31 | 59.19 | 49.97 |
 | 11 | DOPEST-1.0-31B | 31 | 57.56 | 52.69 |
-| 12 | PPLX-Decider-v1.1-27B | 27 | 56.06 | 57.03 |
+| 12 | PPLX-Decider-v1.1-27B | 27 | 56.06 | **57.03** |
 | 13 | René-31B (dequant. BF16) | 31 | 54.56 | 53.41 |
 | 14 | Torchcast-4B-v1.2 | 4 | 54.19 | 51.94 |
 | 16 | deck31b (BF16) | 31 | 54.00 | 50.72 |
@@ -73,13 +77,13 @@ python run.py --output runs/my-model
 | 54 | Laya-421M | 0.421 | 24.88 | 50.00 |
 | 56 | CLM-8B | 8 | 19.50 | 50.00 |
 
-### 通用模型
+### General Models
 
 | Rank | Model | Avg. output tokens | DA ↑ | VA ↑ |
 |---:|---|---:|---:|---:|
-| 1 | Qwen3.8-27B | 8,616 | 83.97 | 72.20 |
-| 2 | Gemma4-31B | 1,000 | 70.08 | 56.13 |
-| 5 | Gemma4-26B-A4B | 1,170 | 61.78 | 54.42 |
+| 1 | **Qwen3.8-27B** | 8,616 | **83.97** | **72.20** |
+| 2 | **Gemma4-31B** | 1,000 | 70.08 | 56.13 |
+| 5 | **Gemma4-26B-A4B** | 1,170 | 61.78 | 54.42 |
 | 6 | Muse-Glimmer-30B | 1,053 | 60.98 | 58.95 |
 | 9 | Qwen3.5-9B | 7,944 | 57.67 | 55.11 |
 | 10 | GPT-OSS-120B | 11,165 | 57.63 | 55.59 |
@@ -96,12 +100,8 @@ python run.py --output runs/my-model
 | 57 | Qwen3-0.6B | 6 | 11.31 | 40.15 |
 <!-- RESULTS_END -->
 
-## 数据与代码
+## Data and Code
 
-- `data/`：测试输入；`evaluation/`：独立评分信息，测试时不会发送给模型。
-- `tandembench/`：API 调用、答案解析和评分代码；`tests/`：本地模拟测试。
-- 原生决策模型的概率接口尚待适配；Chat API 结果应结合具体模型配置解读。
+[`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Scoring data · [`tandembench/`](tandembench/) Evaluation code · [`docs/`](docs/) Usage guide
 
-## 来源与许可
-
-TandemBench 基于 Collab-Overcooked 构建，保留其 [MIT 许可证](third_party/Collab-Overcooked-LICENSE)。TandemBench 自身代码和数据的许可证待确定；当前仓库为私有预发布版本。
+The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. Native decision-model probability interfaces are not yet supported.
