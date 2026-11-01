@@ -13,19 +13,13 @@ TandemBench 评估模型能否根据全局信息，理解多智能体之间的�
 
 需要 Python 3.10+，无需安装第三方依赖。当前支持 **Chat Completions 兼容 API**。
 
-先用少量题目检查接口：
-
-```bash
-python run.py --limit 4
-```
-
-按提示输入 API 地址、模型名称和密钥。确认接口正常后运行完整测试：
+运行完整测试：
 
 ```bash
 python run.py --output runs/my-model
 ```
 
-默认每个选项排列测试一次，共 **4,800 次请求**；结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。`--limit 4` 仅用于接口检查，得到的是子集成绩。
+按提示输入 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**；结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。
 
 可通过 `--part decision` 或 `--part verification` 单独测试一个维度；使用 `--samples 4` 可对每条输入采样四次。更多参数、断点续跑和评分细节见[使用说明](docs/usage.md)。
 
