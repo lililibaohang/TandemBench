@@ -4,7 +4,7 @@
 
 **Benchmarking Decision Models for Multi-Agent Collaboration**
 
-**30 个任务** · **200 个场景** · **1,200 道题** · **4,800 条测试输入**
+**30 个任务** · **200 个场景** · **1,200 道题**
 
 [English](README.md) · **简体中文**
 

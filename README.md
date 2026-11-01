@@ -4,7 +4,7 @@
 
 **Benchmarking Decision Models for Multi-Agent Collaboration**
 
-**30 tasks** · **200 scenarios** · **1,200 questions** · **4,800 test inputs**
+**30 tasks** · **200 scenarios** · **1,200 questions**
 
 **English** · [简体中文](README_zh-CN.md)
 
