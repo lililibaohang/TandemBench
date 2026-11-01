@@ -1,0 +1,25 @@
+{
+  "kit_version": "0.1.1",
+  "files": {
+    ".gitignore": "c097d0d091dff7c18ead2afd1b4ba5abc2c28bc0151ee5bbf9070cdb6ad4f594",
+    "PROVENANCE.json": "d095532946542f542a4aa2642fce4c6c5997b93940ebe6bec17ba1c9be324cee",
+    "README.md": "9fa5914a0aa995dd9cb73f88071eb50003f34f1916ce95db828d6a9a8d1d40a5",
+    "data/decision/inputs.jsonl": "eaaee1ce0e516811df8aa5e9bad3e9cd64e619b21bb0a661cbe19ee084e72582",
+    "data/manifest.json": "71ccbe21c3c027469e8350b3b90ffff1323c38bb482ccb14fece328e5d847ff0",
+    "data/verification/inputs.jsonl": "0f1c008e88d8590c9ac6e05637026bc3bed8fae492c7d890bbc777eabe8e00cb",
+    "evaluation/decision/answers.jsonl": "3e5ef799d2a9638e48e7b25cd806fef65c3d0793f5187b772989293bfb61db84",
+    "evaluation/verification/answers.jsonl": "b9bfdd37b0bb070ccc5c8f7d237d7e1d2299e52fca2008331b649c8ba61654ee",
+    "request-options.example.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "run.py": "f76f1b088c22875166b0ba400e8da581c94e54eb241ae8ec5ce07280b57b7b19",
+    "tandembench/__init__.py": "ae739b3e3b817044ada923b44ba82c752fe8b7c2133908d58fff8fd4b5146298",
+    "tandembench/answer_parser_v5.py": "7350e5304ef716410e7855862f7bf4262d3558e3880c816a2bdbf8a098ae3d29",
+    "tandembench/api.py": "78486e3421dcf505ee56043434868ab1b145db3529a4a6cd8900cb8336c000d9",
+    "tandembench/normalize_qwen_answers.py": "625e7e5ebd82c9503fb0b332c2c3f031f758ffcde172594e2470a9cddb150b29",
+    "tandembench/runner.py": "808b3da06a8e69c38d1d743c5e791a129a0986d1ed3bda77103cfb25233fd7cf",
+    "tandembench/scoring.py": "e68ed36c011485eb56c9dd0048f3db726ee5b71fe7c5978aa7ed4da99c45fa6b",
+    "tests/test_package.py": "645a99bcea7d1497dd3ce8c59e6a8e5694e733ec6e48ce662e6f4b3da4c8678a",
+    "tests/test_review_regressions.py": "dcd789de6feb98d3e2359232e764f7635b5ca7d275a37fcf984930edf15df439",
+    "third_party/Collab-Overcooked-LICENSE": "06dcddbb6908a0c6dd4a9e8ec822eea41d5a460a53089fecccc8a68049e99241",
+    "verify.py": "e9e03e5f13d7d5a5de98bcdede90b6abb0d949b0f8fb73c41d7ff433eb189128"
+  }
+}

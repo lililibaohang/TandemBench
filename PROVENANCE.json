@@ -1,0 +1,21 @@
+{
+  "kit_version": "0.1.1",
+  "status": "private_repository_prerelease",
+  "dataset_manifest_sha256": "71ccbe21c3c027469e8350b3b90ffff1323c38bb482ccb14fece328e5d847ff0",
+  "input_source": "TandemBench public-candidate-v1; frozen madbench-400-v1.0 plus recorded verification variants",
+  "parser_sources": {
+    "answer_parser_v5.py": {
+      "original_sha256": "f3825c6e248119aad423fb98afc5704ebe9cc3fcc442f5763cb34c8ff9971ede",
+      "change": "relative package import only; Chat Completions adaptation in runner.py"
+    },
+    "normalize_qwen_answers.py": {
+      "original_sha256": "625e7e5ebd82c9503fb0b332c2c3f031f758ffcde172594e2470a9cddb150b29",
+      "change": "unchanged"
+    }
+  },
+  "evaluation": "DA and VA; invalid/truncated responses wrong, incomplete transport results not reported as full scores",
+  "model_calls_for_validation": 0,
+  "validation_transport": "localhost mock only",
+  "license_status": "author code and data licenses pending",
+  "review": "2026-11-01: source data/mapping audit; recovery and credential handling fixes; isolated mock integration validation"
+}
