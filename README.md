@@ -12,7 +12,7 @@
 
 </div>
 
-TandemBench evaluates whether decision models can use global information to understand coordination among agents and make decisions about team plans.
+TandemBench evaluates whether decision models can use global information to understand coordination among agents and make decisions about team plans. The included test inputs are the English v1.0.1 edition.
 
 - **DA · Team-plan decision**: select the optimal plan from the candidates.
 - **VA · Optimality verification**: determine whether an optimal plan is missing from the candidates.
@@ -28,6 +28,8 @@ python run.py --output runs/my-model
 Enter the API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for parameters and resuming runs.
 
 ## Results
+
+These results were obtained with Chinese inputs. They are not scores on the English edition; results across language versions are not directly equivalent.
 
 <!-- RESULTS_START -->
 **Results as of: 2026-11-01**

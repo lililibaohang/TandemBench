@@ -1,8 +1,8 @@
 {
-  "kit_version": "0.1.1",
+  "kit_version": "0.2.0",
   "status": "private_repository_prerelease",
-  "dataset_manifest_sha256": "71ccbe21c3c027469e8350b3b90ffff1323c38bb482ccb14fece328e5d847ff0",
-  "input_source": "TandemBench public-candidate-v1; frozen madbench-400-v1.0 plus recorded verification variants",
+  "dataset_manifest_sha256": "5d01f8d852a6de92904abebe53663f93434683686460ed7b239dbbb24b2ba810",
+  "input_source": "tandembench-en-v1.0.1; translated derivative of madbench-400-v1.0 and its verification variants",
   "parser_sources": {
     "answer_parser_v5.py": {
       "original_sha256": "f3825c6e248119aad423fb98afc5704ebe9cc3fcc442f5763cb34c8ff9971ede",
@@ -17,5 +17,6 @@
   "model_calls_for_validation": 0,
   "validation_transport": "localhost mock only",
   "license_status": "author code and data licenses pending",
-  "review": "2026-11-01: source data/mapping audit; recovery and credential handling fixes; isolated mock integration validation"
+  "review": "2026-11-01: source data/mapping audit, recovery and credential-handling fixes, isolated mock validation. English translation passed structural checks; independent human semantic review pending.",
+  "source_english_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677"
 }
