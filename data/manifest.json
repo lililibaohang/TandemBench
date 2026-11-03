@@ -18,7 +18,7 @@
     "evaluation/decision/answers.jsonl": "3e5ef799d2a9638e48e7b25cd806fef65c3d0793f5187b772989293bfb61db84",
     "evaluation/verification/answers.jsonl": "b9bfdd37b0bb070ccc5c8f7d237d7e1d2299e52fca2008331b649c8ba61654ee"
   },
-  "dataset_version": "tandembench-en-v1.0.1",
+  "dataset_version": "tandembench-en-v1.0.0",
   "language": "en",
   "source_language": "zh",
   "source_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",

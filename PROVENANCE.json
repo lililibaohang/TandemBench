@@ -1,8 +1,8 @@
 {
-  "kit_version": "0.2.0",
+  "kit_version": "1.0.0",
   "status": "private_repository_prerelease",
-  "dataset_manifest_sha256": "5d01f8d852a6de92904abebe53663f93434683686460ed7b239dbbb24b2ba810",
-  "input_source": "tandembench-en-v1.0.1; translated derivative of madbench-400-v1.0 and its verification variants",
+  "dataset_manifest_sha256": "5e790de20c6df556473279ef2d2d72eee0a0989d061518e253767e9b7d5e7c47",
+  "input_source": "tandembench-en-v1.0.0; translated derivative of madbench-400-v1.0 and its verification variants",
   "parser_sources": {
     "answer_parser_v5.py": {
       "original_sha256": "f3825c6e248119aad423fb98afc5704ebe9cc3fcc442f5763cb34c8ff9971ede",

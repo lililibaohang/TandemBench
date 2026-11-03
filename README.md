@@ -12,7 +12,7 @@
 
 </div>
 
-TandemBench evaluates whether decision models can use global information to understand coordination among agents and make decisions about team plans. The included test inputs are the English v1.0.1 edition.
+TandemBench evaluates whether decision models can use global information to understand coordination among agents and make decisions about team plans. The included test inputs are the English v1.0.0 edition.
 
 - **DA · Team-plan decision**: select the optimal plan from the candidates.
 - **VA · Optimality verification**: determine whether an optimal plan is missing from the candidates.
