@@ -19,24 +19,22 @@ TandemBench evaluates whether decision models can use global information to unde
 
 ## Quick Start
 
-Requires Python 3.10+ and a Chat Completions-compatible API. No third-party packages are needed.
+Requires Python 3.10+ and a native TandemBench SystemOne-compatible decision service. No third-party packages are needed.
 
 ```bash
-python run.py --output runs/my-model
+python run_native.py --output runs/my-model
 ```
 
-Enter the API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for parameters and resuming runs.
+Enter the native API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for the request contract and resuming runs.
 
-For a local vLLM server, set the served model name and use its OpenAI-compatible `/v1` endpoint:
+The native service must expose `POST /v1/systemone`. The model name identifies the model in the run record; the service normally binds one model instance. If the service uses vLLM as its inference backend, a model-specific wrapper still needs to expose this native endpoint. Pointing `run_native.py` directly at `/v1/chat/completions` evaluates a different text-generation protocol.
 
 ```bash
-vllm serve /path/to/model \
-  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
-export TANDEMBENCH_API_KEY=local-vllm
-python run.py --base-url http://127.0.0.1:8000/v1 \
+export TANDEMBENCH_API_KEY=local-native
+python run_native.py \
+  --base-url http://127.0.0.1:8000/v1 \
   --model MY_MODEL --output runs/my-model
 ```
-
 
 ## Results
 
@@ -110,4 +108,4 @@ The leaderboard below reports the English v1.0.0 edition. It contains complete, 
 
 [`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Scoring data · [`tandembench/`](tandembench/) Evaluation code · [`docs/`](docs/) Usage guide
 
-The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. Native decision-model probability interfaces are not yet supported.
+The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. The native SystemOne runner evaluates typed choices and preserves optional A--D probabilities.

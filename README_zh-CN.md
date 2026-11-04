@@ -19,24 +19,22 @@ TandemBench 评估决策模型能否根据全局信息理解成员间的协作�
 
 ## 快速开始
 
-需要 Python 3.10+，无需安装第三方依赖。当前支持 Chat Completions 兼容 API。
+需要 Python 3.10+，无需安装第三方依赖。当前公开评测入口使用 TandemBench SystemOne 原生决策接口。
 
 ```bash
-python run.py --output runs/my-model
+python run_native.py --output runs/my-model
 ```
 
-按提示输入 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**。结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。完整参数及续跑方式见[使用说明](docs/usage.md)。
+按提示输入原生 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**。结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。完整请求格式及续跑方式见[使用说明](docs/usage.md)。
 
-使用本地 vLLM 服务时，指定服务端的模型名，并把 `/v1` 作为 OpenAI 兼容接口地址：
+原生服务需要提供 `POST /v1/systemone`。模型名用于记录本次评测的模型身份；服务通常绑定一个模型实例。如果服务内部使用 vLLM，仍需要模型专用包装器对外提供这个原生接口。不能直接把 `/v1/chat/completions` 当作原生决策接口。
 
 ```bash
-vllm serve /path/to/model \
-  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
-export TANDEMBENCH_API_KEY=local-vllm
-python run.py --base-url http://127.0.0.1:8000/v1 \
+export TANDEMBENCH_API_KEY=local-native
+python run_native.py \
+  --base-url http://127.0.0.1:8000/v1 \
   --model MY_MODEL --output runs/my-model
 ```
-
 
 ## 测试结果
 

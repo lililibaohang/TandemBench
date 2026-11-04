@@ -13,7 +13,7 @@
       "change": "unchanged"
     }
   },
-  "evaluation": "DA and VA; invalid/truncated responses wrong, incomplete transport results not reported as full scores",
+  "evaluation": "Native SystemOne DA and VA; invalid/unresolved choices wrong, incomplete transport results not reported as full scores",
   "model_calls_for_validation": 0,
   "validation_transport": "localhost mock only",
   "license_status": "author code and data licenses pending",
@@ -23,5 +23,7 @@
   "results_dataset_version": "tandembench-en-v1.0.0",
   "results_snapshot": "results/snapshots/english50-20261103-001/summary.json",
   "results_status": "50_complete_models_of_57_planned",
-  "results_source_table_sha256": "99374869c2709cfe2a1dfd1838fec0fedcacffb092aec40c27f8346d039495fd"
+  "results_source_table_sha256": "99374869c2709cfe2a1dfd1838fec0fedcacffb092aec40c27f8346d039495fd",
+  "native_protocol": "native-systemone-v1",
+  "native_runner_sha256": "454770ee41fa34b25be16a65ba711840561ff0cdd78fe0c227f8985f81a3ab5e"
 }

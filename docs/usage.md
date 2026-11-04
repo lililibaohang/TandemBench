@@ -4,94 +4,56 @@
 
 独立的测试集与 API 评测工具。**Python 3.10+，仅使用标准库，无需安装模型或第三方依赖。**
 
-支持 OpenAI 兼容的 **Chat Completions** 接口：提供 API 地址、模型名和 API key，即可运行并自动评分。地址需包含服务要求的 `/v1` 等前缀；也可以直接提供以 `/chat/completions` 结尾的完整地址。本包不要求使用 OpenAI 服务。
-
-原生 typed-decision/probability API、Responses API 和其他私有请求格式不属于当前适配范围，不能直接换一个 URL 就保证兼容。调用适配集中在 `tandembench/api.py`。本包不训练模型、不重新求解最优答案。
+当前公开入口是 TandemBench 的 **SystemOne 原生决策接口**：提供 API 地址、模型名和 API key，即可提交结构化状态、候选选项和决策问题并自动评分。地址需包含服务要求的 `/v1` 等前缀；调用适配集中在 `tandembench/native_runner.py`。本包不训练模型、不重新求解最优答案。
 
 ## 快速开始
 
 解压后进入本目录。最简单的方式：
 
 ```bash
-python run.py --limit 4
+python run_native.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
+  --output runs/my-model-smoke --limit 4
 ```
 
-按提示输入 API base URL、模型名和 API key。密钥隐藏输入，不写入配置或结果文件。这会对两个维度各取 4 条展示，共调用 8 次，用于检查接口；子集结果明确标为 smoke test。
-
-也可以通过参数和环境变量配置：
-
-```bash
-# 通过终端安全输入或平台密钥管理工具设置 TANDEMBENCH_API_KEY。
-# 不要把真实密钥写入脚本、README 或提交到仓库。
-python run.py \
-  --base-url https://YOUR-ENDPOINT/v1 \
-  --model YOUR-MODEL \
-  --output runs/my-model-smoke \
-  --limit 4
-```
-
-未设置环境变量时，程序会提示隐藏输入密钥；本地无认证服务可输入任意占位值。
+按提示或参数提供原生 API 地址、模型名和 API key。密钥隐藏输入，不写入配置或结果文件。这会对两个维度各取 4 条展示，共调用 8 次，用于检查接口；子集结果明确标为 smoke test。
 
 确认接口正常后，执行全量评测：
 
 ```bash
-python run.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
+export TANDEMBENCH_API_KEY=YOUR_KEY
+python run_native.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
   --output runs/my-model-full
 ```
 
-### 接入 vLLM
+原生服务需要提供 `POST /v1/systemone`，请求中的 `state` 和 `questions.decision.criteria` 分别对应全局状态与 A--D 候选选项。响应至少需要返回 `answers.decision.choice`；如果同时返回 `answers.decision.probabilities`，程序会保存在 `predictions.jsonl` 中供后续分析使用。
 
-vLLM 需要先启动 OpenAI 兼容服务。`--served-model-name` 的值就是评测命令中的 `--model`；`--base-url` 填服务地址的 `/v1` 前缀，程序会自动请求 `/v1/chat/completions`。
+如果模型服务使用 vLLM 作为后端，仍需模型专用适配器把后端包装成上述原生接口。`run_native.py` 不能直接请求 vLLM 的 `/v1/chat/completions`，因为那是文本生成协议。
 
-```bash
-vllm serve /path/to/model \
-  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
-export TANDEMBENCH_API_KEY=local-vllm
-python run.py \
-  --base-url http://127.0.0.1:8000/v1 \
-  --model MY_MODEL \
-  --output runs/my-model-full
-```
-
-如果 vLLM 未启用鉴权，也建议设置一个本地占位值；脚本始终发送 `Authorization: Bearer` 请求头。远程服务应使用真实密钥，并通过环境变量或隐藏输入提供，不要写入命令记录或结果文件。
-
-默认是 4,800 次请求，每条展示采样一次，temperature=0、max_tokens=16,384、并发数 4。请求数不含可能发生的网络重试。API 使用量由你选择的服务计费，本包不会估算具体金额。
+默认是 4,800 次请求，每条展示一次，默认并发数 1。可以通过 `--workers` 调整并发，通过 `--timeout` 和 `--retries` 控制网络等待与重试。
 
 先检查数据和请求数量，不连接 API：
 
 ```bash
-python run.py --dry-run
+python run_native.py --dry-run
 ```
 
-## 采样与接口参数
+## 接口参数
 
 ```bash
-# 每条展示四次采样，共 19,200 次请求；按均值计分，不投票、不择优。
-python run.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
-  --samples 4 --temperature 0.6 --output runs/my-model-n4
-
-# 只评测其中一个维度，或改变并发、超时和输出预算。
-python run.py --part decision --workers 2 --timeout 180 --max-tokens 8192
+# 只评测一个维度，或改变并发、超时和重试次数。
+python run_native.py --part decision --workers 2 --timeout 300 --retries 2 \
+  --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
+  --output runs/my-model-decision
 ```
 
 `--part` 可选 `all`、`decision`、`verification`。`--limit N` 是每个维度的展示条数上限，仅用于冒烟测试，不能把子集分数当作完整榜单成绩。
-
-服务专用参数可以通过 JSON 文件传入：
-
-```bash
-python run.py --request-options request-options.example.json
-```
-
-允许字段为 `top_p`、`seed`、`reasoning_effort`、`chat_template_kwargs`、`enable_thinking`、`max_completion_tokens`。仅传服务明确支持的字段。示例文件 `{}` 表示不额外指定；使用 `max_completion_tokens` 时不会同时发送 `max_tokens`。模型名、消息、stream、n 和密钥不能通过该文件覆盖。
-
-论文中的不同模型使用原生接口、精度、模板和推理配置；通用模型每位置四次采样、原生决策模型通常一次。这里的通用 Chat API 结果**不自动等同于论文中的原生模型配置结果**。比较前应记录并核对模型版本、服务端推理设置和预算。不要仅把 `--samples` 改成 4 就宣称完整复现论文配置。
 
 ## 中断与续跑
 
 使用完全相同的模型、参数和输出目录，并增加 `--resume`：
 
 ```bash
-python run.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
+python run_native.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
   --output runs/my-model-full --resume
 ```
 
@@ -111,7 +73,7 @@ python run.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
 - **DA**：团队方案决策的平均正确率。
 - **VA**：删除最优方案组的正确检出率与保留最优方案组的正确拒报率的等权平均。保留组选择任一有效具体方案都算拒报，不要求选中具体最优方案。
 - 无效/歧义回答和截断回答计错；网络/API 失败单独记录。一个维度缺少响应时，不输出该维度的完整得分。
-- 只解析显式最终答案，不从前面的推理文字中猜测答案。解析器沿用项目 v5 规则，并为 Chat API 包装适配；例如 `A`、`答案：A`、`Final answer: A` 和 `\boxed{A}`。
+- 原生接口只解析 `answers.decision.choice`，不从文本推理中猜测答案；如果服务返回 A--D 概率向量，也会原样保存在预测记录中。
 - 同场景变体和旋转不是独立样本；没有虚构 train/test split。独立人工复核尚未完成。
 
 ## 输出文件
@@ -151,7 +113,7 @@ python -B -m unittest discover -s tests -v
 - 服务响应中的回显密钥在 JSON 解码后递归脱敏，覆盖转义字符串；HTTP 重定向不携带认证信息跟随。
 - 数据清单限定预期文件，核对输入数、唯一 ID、哈希；超时及附加参数进行类型和范围检查。
 
-测试只验证本机模拟服务和数据/代码的一致性；没有使用真实外部服务进行兼容性认证。当前仅支持 Chat Completions，原生决策概率接口仍需要相应适配器。
+测试只验证本机模拟服务和数据/代码的一致性；没有使用真实外部服务进行兼容性认证。原生服务本身需要由模型提供者或模型专用适配器部署；本包负责请求、记录、解析和评分。
 
 ## 上游来源
 
