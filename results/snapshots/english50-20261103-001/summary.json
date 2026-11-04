@@ -427,7 +427,7 @@
       "display_name": "Gemma4-E4B",
       "model_group": "open_general",
       "global_acc_rank": 32,
-      "table_params_display": "8$^{\\dagger}$",
+      "table_params_display": "8",
       "mean_output_tokens": null,
       "main_accuracy": 0.4503125,
       "oja": 0.5115625,

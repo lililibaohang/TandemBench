@@ -88,7 +88,7 @@ The leaderboard below reports the English v1.0.0 edition. It contains complete, 
 | 6 | **Gemma4-26B-A4B** | 26/4 | 60.58 | 53.66 |
 | 9 | Muse-Glimmer-30B | 30 | 59.64 | 60.35 |
 | 30 | Qwen3-32B | 32 | 46.33 | 49.45 |
-| 32 | Gemma4-E4B | 8$^{\dagger}$ | 45.03 | 51.16 |
+| 32 | Gemma4-E4B | 8 | 45.03 | 51.16 |
 | 36 | Qwen3-8B | 8 | 41.03 | 49.85 |
 | 39 | Ministral 3 14B Instruct | 14 | 39.89 | 51.45 |
 | 40 | Llama3.3-70B | 70 | 39.50 | 48.92 |
