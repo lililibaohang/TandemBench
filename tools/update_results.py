@@ -49,8 +49,6 @@ def validate(data):
                 raise ValueError('Invalid score in '+r['model'])
         if r['model_group'] not in ('native_decision','open_general'):
             raise ValueError('Unknown model group')
-        if r['model_group']=='open_general' and (not isinstance(r.get('mean_output_tokens'),(int,float)) or r['mean_output_tokens']<0):
-            raise ValueError('Missing or invalid average output length: '+r['model'])
 
 
 def table(data,lang='zh'):
@@ -64,13 +62,12 @@ def table(data,lang='zh'):
         best_da=max(r['main_accuracy'] for r in rows)
         present_va=[r['oja'] for r in rows if r.get('oja') is not None]
         best_va=max(present_va) if present_va else None
-        column='Params. (B)' if group=='native_decision' else 'Avg. output tokens'
+        column='Params. (B)'
         lines += [f'### {title}','','| Rank | Model | '+column+' | DA ↑ | VA ↑ |','|---:|---|---:|---:|---:|']
         for index,r in enumerate(rows):
             model=str(r['display_name']).replace('|','\\|')
             if index<3:model='**'+model+'**'
-            detail=(str(r.get('table_params_display') or '—').replace('|','\\|') if group=='native_decision'
-                    else format(int(Decimal(str(r['mean_output_tokens'])).quantize(Decimal('1'),rounding=ROUND_HALF_UP)),','))
+            detail=str(r.get('table_params_display') or '—').replace('|','\\|')
             da=pct(r['main_accuracy']);va=pct(r.get('oja'))
             if r['main_accuracy']==best_da:da='**'+da+'**'
             if best_va is not None and r.get('oja')==best_va:va='**'+va+'**'

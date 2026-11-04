@@ -18,5 +18,10 @@
   "validation_transport": "localhost mock only",
   "license_status": "author code and data licenses pending",
   "review": "2026-11-01: source data/mapping audit, recovery and credential-handling fixes, isolated mock validation. English translation passed structural checks; independent human semantic review pending.",
-  "source_english_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677"
+  "source_english_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",
+  "results_language": "en",
+  "results_dataset_version": "tandembench-en-v1.0.0",
+  "results_snapshot": "results/snapshots/english50-20261103-001/summary.json",
+  "results_status": "50_complete_models_of_57_planned",
+  "results_source_table_sha256": "99374869c2709cfe2a1dfd1838fec0fedcacffb092aec40c27f8346d039495fd"
 }
