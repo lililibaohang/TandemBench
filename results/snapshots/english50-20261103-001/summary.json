@@ -4,7 +4,7 @@
   "dataset_version": "tandembench-en-v1.0.0",
   "internal_source_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",
   "source_table_sha256": "99374869c2709cfe2a1dfd1838fec0fedcacffb092aec40c27f8346d039495fd",
-  "source_table_path": "docs/paper/acl2027/madbench400/main-table-results.json",
+  "source_table_path": "docs/paper/acl2027-madbench400/main-table-results.json",
   "rank_basis": "global DA rank among 50 models with complete English results",
   "main_models": 50,
   "main_outputs": 128000,
@@ -669,5 +669,6 @@
       "identification_records": 3200,
       "source_result": "artifacts/exact-coordination/runs/tandembench-en-full1200-001/results/snapshot-1793642299744079000/summary.json"
     }
-  ]
+  ],
+  "public_data_manifest_sha256": "5e790de20c6df556473279ef2d2d72eee0a0989d061518e253767e9b7d5e7c47"
 }
