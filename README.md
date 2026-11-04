@@ -27,6 +27,17 @@ python run.py --output runs/my-model
 
 Enter the API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for parameters and resuming runs.
 
+For a local vLLM server, set the served model name and use its OpenAI-compatible `/v1` endpoint:
+
+```bash
+vllm serve /path/to/model \
+  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
+export TANDEMBENCH_API_KEY=local-vllm
+python run.py --base-url http://127.0.0.1:8000/v1 \
+  --model MY_MODEL --output runs/my-model
+```
+
+
 ## Results
 
 The leaderboard below reports the English v1.0.0 edition. It contains complete, reviewed results for 50 models (40 decision and 10 general); seven planned general models are omitted until their English results are complete and reviewed.

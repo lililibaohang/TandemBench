@@ -27,6 +27,17 @@ python run.py --output runs/my-model
 
 按提示输入 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**。结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。完整参数及续跑方式见[使用说明](docs/usage.md)。
 
+使用本地 vLLM 服务时，指定服务端的模型名，并把 `/v1` 作为 OpenAI 兼容接口地址：
+
+```bash
+vllm serve /path/to/model \
+  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
+export TANDEMBENCH_API_KEY=local-vllm
+python run.py --base-url http://127.0.0.1:8000/v1 \
+  --model MY_MODEL --output runs/my-model
+```
+
+
 ## 测试结果
 
 以下榜单使用英文版 v1.0.0，包含 50 个模型（40 个决策模型、10 个通用模型）的完整复核结果；另外 7 个计划中的通用模型待英文结果完成并复核后再加入。

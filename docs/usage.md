@@ -39,6 +39,22 @@ python run.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL \
   --output runs/my-model-full
 ```
 
+### 接入 vLLM
+
+vLLM 需要先启动 OpenAI 兼容服务。`--served-model-name` 的值就是评测命令中的 `--model`；`--base-url` 填服务地址的 `/v1` 前缀，程序会自动请求 `/v1/chat/completions`。
+
+```bash
+vllm serve /path/to/model \
+  --served-model-name MY_MODEL --host 0.0.0.0 --port 8000 --api-key local-vllm
+export TANDEMBENCH_API_KEY=local-vllm
+python run.py \
+  --base-url http://127.0.0.1:8000/v1 \
+  --model MY_MODEL \
+  --output runs/my-model-full
+```
+
+如果 vLLM 未启用鉴权，也建议设置一个本地占位值；脚本始终发送 `Authorization: Bearer` 请求头。远程服务应使用真实密钥，并通过环境变量或隐藏输入提供，不要写入命令记录或结果文件。
+
 默认是 4,800 次请求，每条展示采样一次，temperature=0、max_tokens=16,384、并发数 4。请求数不含可能发生的网络重试。API 使用量由你选择的服务计费，本包不会估算具体金额。
 
 先检查数据和请求数量，不连接 API：
