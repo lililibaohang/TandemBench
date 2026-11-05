@@ -30,7 +30,7 @@ TandemBench 评估决策模型能否根据全局信息理解成员间的协作�
 
 ## 测试结果
 
-以下榜单使用英文版 v1.0.0，包含 50 个模型（40 个决策模型、10 个通用模型）的完整复核结果；另外 7 个计划中的通用模型待英文结果完成并复核后再加入。
+以下榜单使用英文版 v1.0.0，包含 50 个模型（40 个决策模型、10 个通用模型）的结果。
 
 <!-- RESULTS_START -->
 **评测结果截至：2026-11-03**
@@ -82,18 +82,18 @@ TandemBench 评估决策模型能否根据全局信息理解成员间的协作�
 
 ### 通用模型
 
-| Rank | Model | Params. (B) | DA ↑ | VA ↑ |
-|---:|---|---:|---:|---:|
-| 1 | **[Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)** | 27 | **82.80** | **71.88** |
-| 2 | **[Gemma4-31B](https://huggingface.co/google/gemma-4-31B-it)** | 31 | 73.11 | 57.03 |
-| 6 | **[Gemma4-26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B-it)** | 26/4 | 60.58 | 53.66 |
-| 9 | [Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B) | 30 | 59.64 | 60.35 |
-| 30 | [Qwen3-32B](https://huggingface.co/Qwen/Qwen3-32B) | 32 | 46.33 | 49.45 |
-| 32 | [Gemma4-E4B](https://huggingface.co/google/gemma-4-E4B-it) | 8 | 45.03 | 51.16 |
-| 36 | [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) | 8 | 41.03 | 49.85 |
-| 39 | [Ministral 3 14B Instruct](https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-BF16) | 14 | 39.89 | 51.45 |
-| 40 | [Llama3.3-70B](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) | 70 | 39.50 | 48.92 |
-| 49 | [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) | 0.6 | 17.19 | 40.61 |
+| Rank | Model | Params. (B) | Avg. output tokens | DA ↑ | VA ↑ |
+|---:|---|---:|---:|---:|---:|
+| 1 | **[Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)** | 27 | 8652 | **82.80** | **71.88** |
+| 2 | **[Gemma4-31B](https://huggingface.co/google/gemma-4-31B-it)** | 31 | 1072 | 73.11 | 57.03 |
+| 6 | **[Gemma4-26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B-it)** | 26/4 | 1516 | 60.58 | 53.66 |
+| 9 | [Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B) | 30 | 1415 | 59.64 | 60.35 |
+| 30 | [Qwen3-32B](https://huggingface.co/Qwen/Qwen3-32B) | 32 | 925 | 46.33 | 49.45 |
+| 32 | [Gemma4-E4B](https://huggingface.co/google/gemma-4-E4B-it) | 8 | 2564 | 45.03 | 51.16 |
+| 36 | [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) | 8 | 1092 | 41.03 | 49.85 |
+| 39 | [Ministral 3 14B Instruct](https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-BF16) | 14 | 1762 | 39.89 | 51.45 |
+| 40 | [Llama3.3-70B](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) | 70 | 661 | 39.50 | 48.92 |
+| 49 | [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) | 0.6 | 25 | 17.19 | 40.61 |
 <!-- RESULTS_END -->
 
 ## 数据与答案
