@@ -80,7 +80,7 @@ The leaderboard below reports the English v1.0.0 edition and contains results fo
 | 48 | [Kai-0.6B](https://huggingface.co/vllm-sr/Decision-2.0-Kai-0.6B) | 0.6 | 21.81 | 50.00 |
 | 50 | [CLM-8B](https://huggingface.co/Contrastive-LM/CLM-v0.1-8B) | 8 | 15.44 | 45.94 |
 
-### General Models
+### General-purpose Models on Decision Tasks
 
 | Rank | Model | Params. (B) | Avg. output tokens | DA ↑ | VA ↑ |
 |---:|---|---:|---:|---:|---:|
