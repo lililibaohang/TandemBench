@@ -8,9 +8,3 @@ Reuse must:
 
 1. credit TandemBench;
 2. cite the TandemBench paper;
-3. cite the Collab-Overcooked paper;
-4. retain the upstream [Collab-Overcooked MIT License](third_party/Collab-Overcooked-LICENSE);
-5. indicate whether the question text, translations, answer metadata, or other data were modified.
-
-The upstream environment and other upstream materials remain subject to their
-original licenses. This notice does not replace those upstream terms.

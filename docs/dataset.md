@@ -39,4 +39,4 @@ The English edition is `tandembench-en-v1.0.0`: 30 tasks, 200 scenarios, 1,200 l
 
 ## License
 
-The dataset, prompts, English translations, answer metadata, and result tables are licensed under [CC BY 4.0](../LICENSE-DATA). See [DATA_LICENSE_NOTICE.md](../DATA_LICENSE_NOTICE.md) for attribution and citation requirements. Upstream Collab-Overcooked material remains under its [MIT License](../third_party/Collab-Overcooked-LICENSE).
+The dataset, prompts, English translations, answer metadata, and result tables are licensed under [CC BY 4.0](../LICENSE-DATA). See [DATA_LICENSE_NOTICE.md](../DATA_LICENSE_NOTICE.md) for the TandemBench attribution and citation requirements.

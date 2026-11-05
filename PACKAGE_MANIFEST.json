@@ -4,19 +4,19 @@
   "scope": "dataset_and_answer_key_only",
   "files": {
     ".gitignore": "c097d0d091dff7c18ead2afd1b4ba5abc2c28bc0151ee5bbf9070cdb6ad4f594",
-    "PROVENANCE.json": "0af5de04397aaa67839e2adb807e717a536359d7b932a77de5bb21a987a12c77",
-    "README.md": "e03896b2bb333722327e3f7a8048372b64325a70fd8ea15fce7839f6be209de5",
-    "README_zh-CN.md": "0d0c5c50796fd9bf6b2328bdd12615392147910479de0f619492dca32401e74e",
+    "PROVENANCE.json": "909d286e8cc2808eab851ce646c34137e37af01c52f75d58b0ff4a4af85f63e3",
+    "README.md": "caa049f23e7808cd5a24faca156ed01fdaef1a386e167ed452b158d9d9d13edd",
+    "README_zh-CN.md": "0e4b6df407528e2c0e48bd75c74ae8e5a5918bfa7c73fcefd087efbd0db25c5b",
     "data/decision/inputs.jsonl": "532c292f6c953faaa9b613d374afcdc4da78ed472e50efa8e99aeb1edeaa153e",
     "data/manifest.json": "0842507421894bdfeb00269893e51dccfe75ca02040700545ee1e8cbefbc8c61",
     "data/verification/inputs.jsonl": "6fc24aa02a6785901570477cee918f489d7884a150cb5ef97c9cd02692185807",
-    "docs/dataset.md": "96b3142adc8055391a58f165aba27c6d8818f246d4478691cec0527c8f0183f4",
+    "docs/dataset.md": "4b033474d586b74f73e06397cff15e41c5c2fe2eef46bc3e6f85925a4f8333d7",
     "evaluation/decision/answers.jsonl": "3e5ef799d2a9638e48e7b25cd806fef65c3d0793f5187b772989293bfb61db84",
     "evaluation/verification/answers.jsonl": "b9bfdd37b0bb070ccc5c8f7d237d7e1d2299e52fca2008331b649c8ba61654ee",
     "results/current.json": "b49b1a0f12861acad0a71c3e4a8842e6fd495f7dff4c7dd6c88ebaa489d8f6ad",
     "results/snapshots/english50-20261103-001/summary.json": "298c0028722114c5db6a4964a05635457161e9a63d53e9120bf4592a3711c5c0",
     "third_party/Collab-Overcooked-LICENSE": "06dcddbb6908a0c6dd4a9e8ec822eea41d5a460a53089fecccc8a68049e99241",
-    "LICENSE-DATA": "43392ec77f425adfaac09e698ffdd767bdf3a5ec281dbf2efa34172e98c97e9e",
-    "DATA_LICENSE_NOTICE.md": "94f631093df33081e8a505589a3a0d736123a28e0d55045378387c3a2841c1d9"
+    "LICENSE-DATA": "ee5c783b790acad45d9217ea0e01149f9f49ebd1cdc3662b7ecad03b3e1f49a8",
+    "DATA_LICENSE_NOTICE.md": "a2017a850426fe887d2e15ae759a92646cfd10396eb87aa30ec4eaca2a861032"
   }
 }
