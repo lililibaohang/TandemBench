@@ -108,4 +108,4 @@ The leaderboard below reports the English v1.0.0 edition. It contains complete, 
 
 [`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Scoring data · [`tandembench/`](tandembench/) Evaluation code · [`docs/`](docs/) Usage guide
 
-The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. The native SystemOne runner evaluates typed choices and preserves optional A--D probabilities.
+The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. The native decision-model probability interface is not yet adapted.
