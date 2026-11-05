@@ -23,5 +23,8 @@
   "source_language": "zh",
   "source_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",
   "translation_validation": "local_translation_validated",
-  "independent_human_review": false
+  "independent_human_review": false,
+  "license": "CC BY 4.0",
+  "license_file": "LICENSE-DATA",
+  "attribution_notice": "DATA_LICENSE_NOTICE.md"
 }

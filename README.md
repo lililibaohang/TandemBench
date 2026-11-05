@@ -100,7 +100,7 @@ The leaderboard below reports the English v1.0.0 edition. It contains complete, 
 
 [`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Answer key · [`docs/dataset.md`](docs/dataset.md) Dataset format
 
-The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are still pending. This repository publishes the English inputs, answer metadata, manifests, and result tables.
+The TandemBench dataset, prompts, English translations, answer metadata, and result tables are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Reuse must credit TandemBench, cite the TandemBench and Collab-Overcooked papers, retain the upstream [MIT license](third_party/Collab-Overcooked-LICENSE), and indicate modifications. See [DATA_LICENSE_NOTICE.md](DATA_LICENSE_NOTICE.md) and [LICENSE-DATA](LICENSE-DATA).
 
 ## References
 

@@ -36,3 +36,7 @@ Verification records distinguish the retained-optimum and removed-optimum condit
 ## Scope
 
 The English edition is `tandembench-en-v1.0.0`: 30 tasks, 200 scenarios, 1,200 logical questions, and 4,800 recorded presentations. There is no formal train/validation/test split. The dataset manifest records SHA-256 hashes for the four data and answer files.
+
+## License
+
+The dataset, prompts, English translations, answer metadata, and result tables are licensed under [CC BY 4.0](../LICENSE-DATA). See [DATA_LICENSE_NOTICE.md](../DATA_LICENSE_NOTICE.md) for attribution and citation requirements. Upstream Collab-Overcooked material remains under its [MIT License](../third_party/Collab-Overcooked-LICENSE).

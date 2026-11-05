@@ -6,7 +6,7 @@
   "evaluation": "Answer-key-backed multiple-choice benchmark; no model-serving adapter or scorer is included.",
   "model_calls_for_validation": 0,
   "validation_transport": "local structural checks",
-  "license_status": "author code and data licenses pending",
+  "license_status": "TandemBench dataset, prompts, translations, answer metadata, and result tables: CC BY 4.0; upstream Collab-Overcooked materials: MIT License",
   "review": "Source data and mapping audit completed; English translation passed structural checks; independent human semantic review remains pending.",
   "source_english_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",
   "results_language": "en",

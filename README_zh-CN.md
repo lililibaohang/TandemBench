@@ -100,7 +100,7 @@ TandemBench 评估决策模型能否根据全局信息理解成员间的协作�
 
 [`data/`](data/) 测试输入 · [`evaluation/`](evaluation/) 答案信息 · [`docs/dataset.md`](docs/dataset.md) 数据格式
 
-测试场景基于 [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked)，保留上游 [MIT 许可证](third_party/Collab-Overcooked-LICENSE)。TandemBench 自身代码与数据的许可证仍待确定。本仓库发布英文输入、答案元数据、清单和结果表。
+TandemBench 数据集、题面、英文翻译、答案元数据和结果表采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可。复用时须署名 TandemBench，引用 TandemBench 和 Collab-Overcooked 论文，保留上游 [MIT 许可证](third_party/Collab-Overcooked-LICENSE)，并标明是否修改。详见 [DATA_LICENSE_NOTICE.md](DATA_LICENSE_NOTICE.md) 和 [LICENSE-DATA](LICENSE-DATA)。
 
 ## References
 
