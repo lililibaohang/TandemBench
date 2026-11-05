@@ -1,6 +1,6 @@
 {
-  "export_version": "english-api-v1",
-  "status": "private_repository_prerelease",
+  "export_version": "english-dataset-v1",
+  "status": "release_candidate",
   "base_version": "madbench-400-v1.0",
   "verification_version": "tandembench-optimality-detection-v1.0",
   "tasks": 30,

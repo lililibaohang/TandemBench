@@ -8,7 +8,7 @@
 
 [English](README.md) · **简体中文**
 
-[快速开始](#快速开始) · [测试结果](#测试结果) · [数据与代码](#数据与代码)
+[数据格式](#数据格式) · [测试结果](#测试结果) · [数据与答案](#数据与答案)
 
 </div>
 
@@ -17,24 +17,16 @@ TandemBench 评估决策模型能否根据全局信息理解成员间的协作�
 - **DA · 团队方案决策**：从候选方案中选出最优方案。
 - **VA · 最优性验证**：判断给定方案中是否缺少最优方案。
 
-## 快速开始
+## 数据格式
 
-需要 Python 3.10+，无需安装第三方依赖。当前公开评测入口使用 TandemBench SystemOne 原生决策接口。
+本版本是带独立答案信息的选择题测试集，不包含模型服务适配器或测评代码。
 
-```bash
-python run_native.py --output runs/my-model
-```
+- `data/decision/inputs.jsonl`：1,600 条英文团队方案决策展示。
+- `data/verification/inputs.jsonl`：3,200 条英文最优性验证展示。
+- `evaluation/decision/answers.jsonl` 和 `evaluation/verification/answers.jsonl`：已提供的答案与条件元数据；这些文件不能放入模型输入。
+- 模型输入每行只有 `id` 和 `prompt`；模型对每个 ID 输出一个明确选项：`A`、`B`、`C` 或 `D`。
 
-按提示输入原生 API 地址、模型名称和密钥。默认每个选项排列测试一次，共 **4,800 次请求**。结果保存在 `runs/my-model/REPORT.md` 和 `metrics.json`。完整请求格式及续跑方式见[使用说明](docs/usage.md)。
-
-原生服务需要提供 `POST /v1/systemone`。模型名用于记录本次评测的模型身份；服务通常绑定一个模型实例。如果服务内部使用 vLLM，仍需要模型专用包装器对外提供这个原生接口。不能直接把 `/v1/chat/completions` 当作原生决策接口。
-
-```bash
-export TANDEMBENCH_API_KEY=local-native
-python run_native.py \
-  --base-url http://127.0.0.1:8000/v1 \
-  --model MY_MODEL --output runs/my-model
-```
+记录示例和输入/答案字段区别见[数据格式说明](docs/dataset.md)。
 
 ## 测试结果
 
@@ -104,8 +96,8 @@ python run_native.py \
 | 49 | Qwen3-0.6B | 0.6 | 17.19 | 40.61 |
 <!-- RESULTS_END -->
 
-## 数据与代码
+## 数据与答案
 
-[`data/`](data/) 测试输入 · [`evaluation/`](evaluation/) 评分信息 · [`tandembench/`](tandembench/) 评测代码 · [`docs/`](docs/) 使用说明
+[`data/`](data/) 测试输入 · [`evaluation/`](evaluation/) 答案信息 · [`docs/dataset.md`](docs/dataset.md) 数据格式
 
-测试场景基于 [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked)，保留上游 [MIT 许可证](third_party/Collab-Overcooked-LICENSE)。TandemBench 自身代码与数据的许可证待确定；当前为私有预发布版本。原生决策模型的概率接口尚待适配。
+测试场景基于 [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked)，保留上游 [MIT 许可证](third_party/Collab-Overcooked-LICENSE)。TandemBench 自身代码与数据的许可证仍待确定。本仓库发布英文输入、答案元数据、清单和结果表。

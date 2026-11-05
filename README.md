@@ -8,7 +8,7 @@
 
 **English** · [简体中文](README_zh-CN.md)
 
-[Quick Start](#quick-start) · [Results](#results) · [Data & Code](#data-and-code)
+[Dataset format](#dataset-format) · [Results](#results) · [Data and answer key](#data-and-answer-key)
 
 </div>
 
@@ -17,24 +17,16 @@ TandemBench evaluates whether decision models can use global information to unde
 - **DA · Team-plan decision**: select the optimal plan from the candidates.
 - **VA · Optimality verification**: determine whether an optimal plan is missing from the candidates.
 
-## Quick Start
+## Dataset format
 
-Requires Python 3.10+ and a native TandemBench SystemOne-compatible decision service. No third-party packages are needed.
+This release is a multiple-choice test set with a separate answer key. It does not include a model-serving adapter or evaluation code.
 
-```bash
-python run_native.py --output runs/my-model
-```
+- `data/decision/inputs.jsonl`: 1,600 English decision presentations.
+- `data/verification/inputs.jsonl`: 3,200 English optimality-verification presentations.
+- `evaluation/decision/answers.jsonl` and `evaluation/verification/answers.jsonl`: the released answer and condition metadata; keep these files out of model inputs.
+- Each model-facing row contains only `id` and `prompt`; submit one explicit choice, `A`, `B`, `C`, or `D`, for each ID.
 
-Enter the native API base URL, model name and API key when prompted. By default, each option ordering is evaluated once: **4,800 requests** in total. Results are saved to `runs/my-model/REPORT.md` and `metrics.json`. See the [usage guide](docs/usage.md) (Chinese) for the request contract and resuming runs.
-
-The native service must expose `POST /v1/systemone`. The model name identifies the model in the run record; the service normally binds one model instance. If the service uses vLLM as its inference backend, a model-specific wrapper still needs to expose this native endpoint. Pointing `run_native.py` directly at `/v1/chat/completions` evaluates a different text-generation protocol.
-
-```bash
-export TANDEMBENCH_API_KEY=local-native
-python run_native.py \
-  --base-url http://127.0.0.1:8000/v1 \
-  --model MY_MODEL --output runs/my-model
-```
+See the [dataset format](docs/dataset.md) for record examples and the distinction between input and answer-key fields.
 
 ## Results
 
@@ -104,8 +96,8 @@ The leaderboard below reports the English v1.0.0 edition. It contains complete, 
 | 49 | Qwen3-0.6B | 0.6 | 17.19 | 40.61 |
 <!-- RESULTS_END -->
 
-## Data and Code
+## Data and answer key
 
-[`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Scoring data · [`tandembench/`](tandembench/) Evaluation code · [`docs/`](docs/) Usage guide
+[`data/`](data/) Test inputs · [`evaluation/`](evaluation/) Answer key · [`docs/dataset.md`](docs/dataset.md) Dataset format
 
-The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are pending; this is a private prerelease. The native decision-model probability interface is not yet adapted.
+The scenarios are derived from [Collab-Overcooked](https://github.com/YusaeMeow/Collab-Overcooked); its [MIT license](third_party/Collab-Overcooked-LICENSE) is included. Licenses for TandemBench code and data are still pending. This repository publishes the English inputs, answer metadata, manifests, and result tables.

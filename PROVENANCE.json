@@ -1,29 +1,18 @@
 {
   "kit_version": "1.0.0",
-  "status": "private_repository_prerelease",
-  "dataset_manifest_sha256": "5e790de20c6df556473279ef2d2d72eee0a0989d061518e253767e9b7d5e7c47",
+  "status": "release_candidate",
+  "dataset_manifest_sha256": "6cb9c9fe4b6bdc4edcddfae85b7ddb5fcd43b05165bea78307f8ac2be86225f6",
   "input_source": "tandembench-en-v1.0.0; translated derivative of madbench-400-v1.0 and its verification variants",
-  "parser_sources": {
-    "answer_parser_v5.py": {
-      "original_sha256": "f3825c6e248119aad423fb98afc5704ebe9cc3fcc442f5763cb34c8ff9971ede",
-      "change": "relative package import only; Chat Completions adaptation in runner.py"
-    },
-    "normalize_qwen_answers.py": {
-      "original_sha256": "625e7e5ebd82c9503fb0b332c2c3f031f758ffcde172594e2470a9cddb150b29",
-      "change": "unchanged"
-    }
-  },
-  "evaluation": "Native SystemOne DA and VA; invalid/unresolved choices wrong, incomplete transport results not reported as full scores",
+  "evaluation": "Answer-key-backed multiple-choice benchmark; no model-serving adapter or scorer is included.",
   "model_calls_for_validation": 0,
-  "validation_transport": "localhost mock only",
+  "validation_transport": "local structural checks",
   "license_status": "author code and data licenses pending",
-  "review": "2026-11-01: source data/mapping audit, recovery and credential-handling fixes, isolated mock validation. English translation passed structural checks; independent human semantic review pending.",
+  "review": "Source data and mapping audit completed; English translation passed structural checks; independent human semantic review remains pending.",
   "source_english_manifest_sha256": "8bd439bdf474ebcc94ad7d92dc503d000d6d176f0e0edc73e78caa7b1a43b677",
   "results_language": "en",
   "results_dataset_version": "tandembench-en-v1.0.0",
   "results_snapshot": "results/snapshots/english50-20261103-001/summary.json",
   "results_status": "50_complete_models_of_57_planned",
   "results_source_table_sha256": "99374869c2709cfe2a1dfd1838fec0fedcacffb092aec40c27f8346d039495fd",
-  "native_protocol": "native-systemone-v1",
-  "native_runner_sha256": "454770ee41fa34b25be16a65ba711840561ff0cdd78fe0c227f8985f81a3ab5e"
+  "distribution_scope": "English inputs, answer metadata, manifests, and result tables"
 }
