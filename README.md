@@ -2,7 +2,7 @@
 
 # TandemBench
 
-**Benchmarking Decision Models for Multi-Agent Collaboration**
+[**TandemBench: Benchmarking Decision Models for Multi-Agent Collaboration**](https://arxiv.org/pdf/2611.05827)
 
 **30 tasks** · **200 scenarios** · **1,200 questions**
 
